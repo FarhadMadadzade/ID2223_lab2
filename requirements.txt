@@ -1,0 +1,14 @@
+datasets>=2.6.1
+git+https://github.com/huggingface/transformers
+librosa
+evaluate>=0.30
+jiwer
+gradio
+hopsworks
+fsspec==2023.9.2
+tensorflow==2.2.0
+transformers==3.3.1
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+torch
