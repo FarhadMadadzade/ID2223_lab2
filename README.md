@@ -33,5 +33,5 @@ Comparing the results on the Huggingface models we can see very clear improvemen
 # Huggingface UI
 The UI developed to showcase the use of the model is intended for demonstration purposes. We wrote a script that given a specific date, navigates to the Romanian parliament's website and goes to their media archive where they have uploaded recordings from parliament meetings and downloads the video published on that date. The videos in the archive are much longer than 30 seconds which is the maximum audio input length the model takes. Hence, for demonstration purposes, we only transcribe and present the first 30 seconds of the video. In the UI, you write the date that the recording was published (in the format YYYYMMDD) and press submit. Given that there is a recording and everything goes smoothly, the output will be the video that is transcribed, as well as the transcription below it. If there is no video at the given date, a surprise will be shown to the user along with informative text in the output textbox. 
 
-Link to the final UI: [Huggingface space]:(https://huggingface.co/spaces/ID2223-labs/romanian_parliament_transcription)
+Link to the final UI: [Huggingface space](https://huggingface.co/spaces/ID2223-labs/romanian_parliament_transcription)
 
