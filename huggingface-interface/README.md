@@ -1,5 +1,5 @@
 ---
-title: Swedish Parliament Transcriber
+title: Romanian Parliament Transcriber
 emoji: 🐢
 colorFrom: purple
 colorTo: green
