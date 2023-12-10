@@ -12,6 +12,7 @@ pipe = pipeline("automatic-speech-recognition", model="Artanis1551/whisper_roman
 
 def process_video(date):
     # If the date is not in YYYY-MM-DD format, return an error message
+    date = date.strip()
     date_pattern = re.compile(r"\b\d{4}\d{2}\d{2}\b")
     if not date_pattern.match(date):
         video_path = download_youtube_video(
