@@ -8,5 +8,4 @@ torch
 urllib3
 moviepy
 pydub
-beautifulsoup4
 pytube

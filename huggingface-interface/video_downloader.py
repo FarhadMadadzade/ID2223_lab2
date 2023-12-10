@@ -1,61 +1,27 @@
 import urllib.request
-import requests
-from bs4 import BeautifulSoup
 from pytube import YouTube
+import os
+import glob
 
 
-def get_response(url):
+def download_video(date):
+    # Delete any existing .mp4 files
+    for mp4_file in glob.glob("*.mp4"):
+        os.remove(mp4_file)
+
+    year = date[:4]
+    url = f"https://www.cdep.ro/u02/comisii/{year}/cp46_{date}.mp4"
     try:
-        response = requests.get(url)
-        response.raise_for_status()
-    except requests.exceptions.HTTPError as e:
-        if e.response.status_code == 404:
-            print("No video exists for the given date range.")
-            return None
+        urllib.request.urlretrieve(url, f"video_{date}.mp4")
+        print("Video downloaded successfully.")
+        return f"video_{date}.mp4"
+    except urllib.error.HTTPError as e:
+        if e.code == 404:
+            print("No video exists for the given date.")
         else:
-            print(f"An error occurred while getting the webpage: {e}")
-            return None
+            print(f"An error occurred while downloading the video: {e}")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
-        return None
-
-    soup = BeautifulSoup(response.text, "html.parser")
-    return soup
-
-
-def download_video1(date):
-    # Get the webpage
-    url = f"https://www.riksdagen.se/sv/sok/?avd=webbtv&from={date}&tom={date}&doktyp=kam-vo"
-
-    soup = get_response(url)
-    # Find the download link
-    try:
-        dateparse = date.replace("-", "")
-        video_page = [
-            a["href"]
-            for a in soup.find_all("a", href=True)
-            if a.get("aria-label") and dateparse in a["href"]
-        ][0]
-        # go to video_page and get all links
-        soup = get_response(video_page)
-        video_link = [
-            a["href"]
-            for a in soup.find_all("a", href=True)
-            if a["href"].startswith("https://mhdownload.riksdagen.se")
-        ][0]
-        print(video_link)
-    except IndexError:
-        print("No video exists for the given date range.")
-        return None
-
-    # Download the video
-    video_path = f"video_{date}.mp4"
-    try:
-        urllib.request.urlretrieve(video_link, video_path)
-        return video_path
-    except Exception as e:
-        print(f"An error occurred while downloading the video: {e}")
-        return None
 
 
 def download_youtube_video(url):
@@ -67,3 +33,6 @@ def download_youtube_video(url):
         return video_path
     except Exception as e:
         print(f"An error occurred while downloading the video: {e}")
+
+
+download_video("20230503")
