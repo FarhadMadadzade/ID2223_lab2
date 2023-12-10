@@ -57,7 +57,9 @@ iface = gr.Interface(
     title="Romanian Transcription Test",
     description="This app transcribes videos from the Romanian Parliament"
     + " on a given date. Only the first 30 seconds of the "
-    + "video will be used if it is longer than that.",
+    + "video will be used if it is longer than that.\n\n"
+    + "Example dates where there are videos available:"
+    + " 20231122 and 20230522.",
 )
 
 iface.launch()
